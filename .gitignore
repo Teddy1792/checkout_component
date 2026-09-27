@@ -1,0 +1,21 @@
+# Dependencies
+node_modules/
+
+# Production build output
+dist/
+
+# Tool caches and generated TypeScript metadata
+.vite/
+*.tsbuildinfo
+coverage/
+
+# Local environment files
+.env
+.env.*
+!.env.example
+*.local
+
+# OS and editor files
+.DS_Store
+.idea/
+.vscode/
