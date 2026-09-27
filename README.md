@@ -4,6 +4,8 @@ A responsive React + TypeScript checkout page styled with Tailwind. The app fetc
 
 ## Run it
 
+Node 24 LTS is the recommended runtime. Version managers that support `.nvmrc` can select it automatically.
+
 ```bash
 npm install
 npm run dev
