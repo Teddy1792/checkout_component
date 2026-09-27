@@ -54,6 +54,19 @@
 }
 
 @layer components {
+  .site-container {
+    width: 100%;
+    max-width: 73.75rem;
+    margin-inline: auto;
+    padding-inline: 1.25rem;
+  }
+
+  @media (min-width: 40rem) {
+    .site-container {
+      padding-inline: 2rem;
+    }
+  }
+
   .eyebrow {
     font-size: 0.7rem;
     font-weight: 800;
@@ -87,6 +100,18 @@
   .button-primary:disabled {
     cursor: not-allowed;
     opacity: 0.52;
+  }
+
+  .footer-link {
+    text-decoration-color: transparent;
+    text-underline-offset: 3px;
+    transition: color 150ms ease, text-decoration-color 150ms ease;
+  }
+
+  .footer-link:hover {
+    color: var(--color-brand);
+    text-decoration-line: underline;
+    text-decoration-color: currentColor;
   }
 }
 

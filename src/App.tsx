@@ -3,6 +3,7 @@ import { AlertCircle, Check, CheckCircle2, RotateCcw } from "lucide-react";
 import { AddressCard } from "./components/AddressCard";
 import { BookList } from "./components/BookList";
 import { OrderSummary } from "./components/OrderSummary";
+import { SiteFooter } from "./components/SiteFooter";
 import { SiteHeader } from "./components/SiteHeader";
 import { getErrorMessage, isCheckoutData, isCheckoutSuccess } from "./lib/validation";
 import type { Address, Book, CheckoutData, CheckoutSuccess } from "./types";
@@ -20,7 +21,7 @@ const formatMoney = (cents: number) =>
 
 function CheckoutSkeleton() {
   return (
-    <main className="mx-auto max-w-[1120px] px-5 py-14 sm:px-8" aria-busy="true" aria-label="Loading checkout">
+    <main className="site-container py-14" aria-busy="true" aria-label="Loading checkout">
       <div className="h-5 w-32 animate-pulse rounded bg-line" />
       <div className="mt-4 h-12 w-72 max-w-full animate-pulse rounded bg-line" />
       <div className="mt-12 grid gap-12 lg:grid-cols-[minmax(0,1fr)_340px]">
@@ -149,7 +150,7 @@ export function CheckoutPage() {
       }
 
       if (!response.ok) {
-        throw new Error(getErrorMessage(payload) ?? "We couldn’t place your order. Please try again.");
+        throw new Error(getErrorMessage(payload) ?? "Please try again in a moment.");
       }
       if (!isCheckoutSuccess(payload)) {
         throw new Error("We received an unexpected response. Your order was not confirmed.");
@@ -186,7 +187,7 @@ export function CheckoutPage() {
       <SiteHeader />
       <main id="order">
         <section className="border-b border-line bg-white">
-          <div className="mx-auto max-w-[1120px] px-5 py-10 text-center sm:px-8 sm:py-14">
+          <div className="site-container py-10 text-center sm:py-14">
             <p className="eyebrow">September’s box</p>
             <h1 className="mt-2 font-display text-[40px] leading-[1.05] tracking-[-0.02em] text-ink sm:text-[56px]">
               Review your good reads.
@@ -208,7 +209,7 @@ export function CheckoutPage() {
           </div>
         </section>
 
-        <div className="mx-auto max-w-[1120px] px-5 py-10 sm:px-8 sm:py-14">
+        <div className="site-container py-10 sm:py-14">
           {order && (
             <section
               className="mb-8 flex items-start gap-4 border border-teal-dark/20 bg-[#eaf8f4] p-5 sm:p-6"
@@ -231,11 +232,26 @@ export function CheckoutPage() {
           )}
 
           {submitError && (
-            <div className="mb-8 flex items-start justify-between gap-4 border border-red-200 bg-red-50 p-4 text-sm text-red-800" role="alert">
-              <span className="flex items-start gap-2">
-                <AlertCircle className="mt-0.5 shrink-0" size={18} aria-hidden="true" /> {submitError}
-              </span>
-              <button type="button" onClick={() => setSubmitError(null)} className="shrink-0 font-bold underline">Dismiss</button>
+            <div
+              className="mb-10 flex items-start gap-4 border border-red-200 border-l-4 border-l-red-600 bg-white p-5 text-red-900 shadow-card sm:gap-5 sm:p-6"
+              role="alert"
+            >
+              <div className="flex size-10 shrink-0 items-center justify-center rounded-full bg-red-100 text-red-700">
+                <AlertCircle size={21} aria-hidden="true" />
+              </div>
+              <div className="min-w-0 flex-1">
+                <h2 className="font-display text-[22px] leading-tight text-ink">
+                  We couldn’t place your order
+                </h2>
+                <p className="mt-2 text-sm leading-6 text-red-900">{submitError}</p>
+              </div>
+              <button
+                type="button"
+                onClick={() => setSubmitError(null)}
+                className="min-h-11 shrink-0 px-2 text-xs font-bold uppercase tracking-[0.08em] text-red-800 underline underline-offset-4"
+              >
+                Dismiss
+              </button>
             </div>
           )}
 
@@ -278,9 +294,7 @@ export function CheckoutPage() {
           </div>
         </div>
       </main>
-      <footer className="border-t border-line bg-white px-5 py-7 text-center text-xs text-muted">
-        © 2026 Book of the Month · Questions? We’re here to help.
-      </footer>
+      <SiteFooter />
     </div>
   );
 }

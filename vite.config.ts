@@ -86,7 +86,7 @@ function checkoutHandler(
 
         if (requestUrl.searchParams.get("simulateError") === "1") {
           sendJson(response, 500, {
-            error: "We couldn’t place your order. No charge was made—please try again.",
+            error: "No charge was made. Please try again.",
           });
           return;
         }

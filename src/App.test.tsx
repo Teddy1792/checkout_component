@@ -63,6 +63,8 @@ describe("CheckoutPage", () => {
     expect(screen.getByText("Americanah")).toBeInTheDocument();
     expect(screen.getByText("Tales from Earthsea")).toBeInTheDocument();
     expect(screen.getAllByText("$41.97")).toHaveLength(2);
+    expect(screen.getByText("Fiction,")).toBeInTheDocument();
+    expect(screen.getByRole("navigation", { name: "Legal" })).toBeInTheDocument();
   });
 
   it("posts only the selected book IDs and renders a validated confirmation", async () => {
@@ -122,6 +124,7 @@ describe("CheckoutPage", () => {
     expect(await screen.findByRole("alert")).toHaveTextContent(
       "The box sold out. Choose another title.",
     );
+    expect(screen.getByRole("heading", { name: "We couldn’t place your order" })).toBeInTheDocument();
     expect(fetchMock.mock.calls[1][0]).toBe("/api/checkout?simulateError=1");
     expect(screen.getByRole("button", { name: /place order/i })).toBeEnabled();
   });

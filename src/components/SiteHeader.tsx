@@ -10,7 +10,7 @@ export function SiteHeader() {
         </a>
       </div>
       <header className="bg-brand text-white">
-        <div className="mx-auto flex h-[74px] max-w-[1180px] items-center justify-between px-5 sm:h-[88px] sm:px-8">
+        <div className="site-container flex h-[74px] items-center justify-between sm:h-[88px]">
           <a
             href="#top"
             className="font-display text-[25px] leading-none italic tracking-[-0.045em] sm:text-[31px]"
