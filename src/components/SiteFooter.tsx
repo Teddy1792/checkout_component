@@ -31,20 +31,18 @@ const footerGroups = [
 
 function FooterGroup({ title, links }: { title: string; links: string[] }) {
   return (
-    <nav aria-label={title}>
+    <section aria-labelledby={title.replaceAll(" ", "-").toLowerCase()}>
       <h2 className="text-[11px] font-bold uppercase tracking-[0.12em] text-ink">
+        <span id={title.replaceAll(" ", "-").toLowerCase()}>
         {title}
+        </span>
       </h2>
       <ul className="mt-3 space-y-2.5 text-[13px] text-ink">
         {links.map((link) => (
-          <li key={link}>
-            <a className="footer-link" href="#top">
-              {link}
-            </a>
-          </li>
+          <li key={link}>{link}</li>
         ))}
       </ul>
-    </nav>
+    </section>
   );
 }
 
@@ -61,21 +59,14 @@ export function SiteFooter() {
         ))}
 
         <div className="sm:col-span-2 md:col-span-1 lg:col-span-1">
-          <a
-            href="#top"
-            className="inline-flex min-h-11 items-center gap-2 text-sm font-bold hover:text-brand"
-          >
+          <div className="inline-flex min-h-11 items-center gap-2 text-sm font-bold">
             <span className="flex size-6 items-center justify-center rounded-[7px] bg-gradient-to-br from-purple-600 via-pink-500 to-amber-400 text-white">
               <Instagram size={16} aria-hidden="true" />
             </span>
             Instagram
-          </a>
+          </div>
           <div className="mt-8 flex flex-wrap items-center gap-3 lg:flex-col lg:items-start">
-            <a
-              href="#top"
-              className="block h-[45px] w-[135px] overflow-hidden rounded-[5px] transition-opacity hover:opacity-80"
-              aria-label="Download on the App Store"
-            >
+            <div className="block h-[45px] w-[135px] overflow-hidden rounded-[5px]">
               <img
                 src="/store-badges/download-on-the-app-store.svg"
                 alt="Download on the App Store"
@@ -83,14 +74,10 @@ export function SiteFooter() {
                 height="45"
                 className="h-full w-full"
               />
-            </a>
+            </div>
             {/* The official Google PNG includes transparent outer padding. This
                 viewport keeps its visible badge at the same 135 × 45 size. */}
-            <a
-              href="#top"
-              className="relative block h-[45px] w-[135px] overflow-hidden rounded-[5px] transition-opacity hover:opacity-80"
-              aria-label="Get it on Google Play"
-            >
+            <div className="relative block h-[45px] w-[135px] overflow-hidden rounded-[5px]">
               <img
                 src="/store-badges/get-it-on-google-play.png"
                 alt="Get it on Google Play"
@@ -104,7 +91,7 @@ export function SiteFooter() {
                   top: "-10.98px",
                 }}
               />
-            </a>
+            </div>
           </div>
         </div>
       </div>
@@ -123,18 +110,18 @@ export function SiteFooter() {
         <p className="lg:whitespace-nowrap">
           ©2026 Book of the Month LLC. Book-of-the-Month and Book-of-the-Month Club are registered trademarks of Book of the Month LLC.
         </p>
-        <nav aria-label="Legal" className="flex flex-wrap gap-x-5 gap-y-2 lg:flex-nowrap">
+        <div aria-label="Legal information" className="flex flex-wrap gap-x-5 gap-y-2 lg:flex-nowrap">
           {[
             "Accessibility statement",
             "Privacy policy",
             "Terms of use",
             "Privacy choices",
           ].map((link) => (
-            <a key={link} href="#top" className="footer-link whitespace-nowrap">
+            <span key={link} className="whitespace-nowrap">
               {link}
-            </a>
+            </span>
           ))}
-        </nav>
+        </div>
       </div>
     </footer>
   );

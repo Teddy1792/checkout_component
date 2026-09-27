@@ -27,10 +27,12 @@ npm run preview
 
 ## Assumptions and trade-offs
 
+- Checkout state stays local to `CheckoutPage`. A global store such as Redux would add indirection without a current cross-route or cross-feature consumer; it would become appropriate if selections, member data, or order state needed to be coordinated across multiple routes or independently mounted features.
 - Prices are stored as integer cents to avoid floating-point total errors. The member pick is `$17.99`; add-ons are `$11.99`; shipping is free.
 - The mock models a US saved address, so the editor validates a two-letter state and ZIP/ZIP+4. A production international checkout would use country-aware fields and validation.
 - The API contract only asks for `bookIds`, so edited address data stays client-side in this exercise. A real implementation would save the address to a dedicated authenticated endpoint before checkout.
 - The in-Vite endpoint is intentionally a development mock, not a production authentication or payment service.
+- Header section links navigate within this single-page exercise. Footer labels and store badges are intentionally static because the brief does not provide production routes, social profiles, or app-store listing URLs; they should receive real destinations before release.
 
 ## Edge cases and security
 

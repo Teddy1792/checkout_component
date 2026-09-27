@@ -21,26 +21,25 @@ export function SiteHeader() {
 
           <nav className="hidden items-center gap-8 text-sm font-semibold md:flex" aria-label="Main navigation">
             <a className="transition-opacity hover:opacity-75" href="#order">My box</a>
-            <a className="transition-opacity hover:opacity-75" href="#books">All books</a>
-            <a className="transition-opacity hover:opacity-75" href="#shipping">Membership</a>
+            <a className="transition-opacity hover:opacity-75" href="#books">Books</a>
+            <a className="transition-opacity hover:opacity-75" href="#shipping">Shipping</a>
           </nav>
 
           <div className="flex items-center gap-2 sm:gap-3">
-            <button
-              type="button"
+            <a
+              href="#books"
               className="hidden items-center gap-2 rounded border border-white/80 px-4 py-2 text-sm font-semibold sm:flex"
             >
               <PackageOpen size={17} aria-hidden="true" /> My boxes
-            </button>
-            <button
-              type="button"
+            </a>
+            <span
               className="rounded bg-cream px-4 py-2 text-sm font-bold text-ink sm:px-5"
             >
               Account
-            </button>
-            <button type="button" className="ml-1 md:hidden" aria-label="Open menu">
+            </span>
+            <span className="ml-1 md:hidden" aria-hidden="true">
               <Menu size={25} />
-            </button>
+            </span>
           </div>
         </div>
       </header>

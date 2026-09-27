@@ -64,7 +64,7 @@ describe("CheckoutPage", () => {
     expect(screen.getByText("Tales from Earthsea")).toBeInTheDocument();
     expect(screen.getAllByText("$41.97")).toHaveLength(2);
     expect(screen.getByText("Fiction,")).toBeInTheDocument();
-    expect(screen.getByRole("navigation", { name: "Legal" })).toBeInTheDocument();
+    expect(screen.getByText("Privacy policy")).toBeInTheDocument();
   });
 
   it("posts only the selected book IDs and renders a validated confirmation", async () => {
