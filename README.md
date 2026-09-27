@@ -11,6 +11,14 @@ npm run dev
 
 The Vite development and preview servers include a small mock checkout handler, so the success flow works locally without another service.
 
+The mock deliberately takes two seconds to respond so the pending state is visible. To test the failure path while using `npm run dev`, open:
+
+```text
+http://localhost:5173/?simulateCheckoutError=1
+```
+
+Click **Place order** and the mock will return a safe error after the same two-second delay. Remove the query parameter or open the normal root URL to restore successful checkouts. The switch is enabled only in Vite development mode.
+
 ```bash
 npm test
 npm run build
@@ -27,6 +35,7 @@ npm run preview
 ## Edge cases and security
 
 - The UI handles initial-data failure, malformed JSON, non-JSON API responses, API errors, timeouts, double submits, empty boxes, and invalid selections outside the 1–4 range.
+- The API's `error` field is treated as sanitized, user-facing copy and is displayed only after runtime type and length validation. Raw exceptions, stack traces, database errors, and other internal diagnostics must never be returned to or rendered by the client; unexpected failures use a generic fallback message instead.
 - Fetched JSON and API success payloads are runtime-validated rather than trusted after a TypeScript cast.
 - Address fields are length-limited, normalized, validated, and rendered only through React text nodes—there is no raw HTML rendering.
 - The mock API accepts JSON POST requests only, caps request bodies at 16 KB, allowlists known unique book IDs, and returns generic parsing errors.

@@ -1,0 +1,102 @@
+@import "tailwindcss";
+
+@theme {
+  --color-brand: #086ba8;
+  --color-brand-dark: #04578d;
+  --color-lilac: #b49ace;
+  --color-cream: #f8f5f1;
+  --color-ink: #151515;
+  --color-muted: #676767;
+  --color-line: #dedede;
+  --color-blue-pale: #e3f3fa;
+  --color-teal: #74cce7;
+  --color-teal-dark: #087b75;
+  --font-display: Georgia, "Times New Roman", serif;
+  --font-sans: Arial, Helvetica, sans-serif;
+  --shadow-card: 0 4px 20px rgb(22 52 68 / 0.1);
+  --shadow-book: 4px 6px 12px rgb(0 0 0 / 0.18);
+}
+
+@layer base {
+  * {
+    box-sizing: border-box;
+  }
+
+  html {
+    scroll-behavior: smooth;
+  }
+
+  body {
+    margin: 0;
+    min-width: 320px;
+    background: var(--color-cream);
+    font-family: var(--font-sans);
+    -webkit-font-smoothing: antialiased;
+  }
+
+  button,
+  a,
+  input {
+    -webkit-tap-highlight-color: transparent;
+  }
+
+  button:not(:disabled),
+  a {
+    cursor: pointer;
+  }
+
+  button:focus-visible,
+  a:focus-visible,
+  input:focus-visible {
+    outline: 3px solid rgb(8 107 168 / 0.32);
+    outline-offset: 3px;
+  }
+}
+
+@layer components {
+  .eyebrow {
+    font-size: 0.7rem;
+    font-weight: 800;
+    letter-spacing: 0.18em;
+    line-height: 1.4;
+    text-transform: uppercase;
+    color: var(--color-brand);
+  }
+
+  .button-primary {
+    display: inline-flex;
+    min-height: 3.25rem;
+    align-items: center;
+    justify-content: center;
+    gap: 0.6rem;
+    border: 0;
+    border-radius: 2px;
+    background: var(--color-brand);
+    padding: 0.75rem 1.75rem;
+    color: white;
+    font-size: 0.875rem;
+    font-weight: 800;
+    transition: background 160ms ease, transform 160ms ease, opacity 160ms ease;
+  }
+
+  .button-primary:hover:not(:disabled) {
+    background: var(--color-brand-dark);
+    transform: translateY(-1px);
+  }
+
+  .button-primary:disabled {
+    cursor: not-allowed;
+    opacity: 0.52;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    scroll-behavior: auto !important;
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
+}
